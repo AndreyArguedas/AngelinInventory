@@ -1,0 +1,31 @@
+<h1>Eventos</h1>
+
+<a href="{% url 'event_create' %}">Crear Evento</a>
+
+<div>
+  <a href="?range=week">📅 Esta semana</a> |
+  <a href="?range=month">🗓️ Este mes</a> |
+  <a href="?range=year">📆 Este a;o</a>
+</div>
+
+<form method="get">
+  <label for="start_date">From:</label>
+  {{ form.start_date }}
+  <label for="end_date">To:</label>
+  {{ form.end_date }}
+  <button type="submit">Filter</button>
+</form>
+
+<ul>
+  {% for event in events %}
+    <li>{{ event.name }} - {{ event.date }} - {{ event.location }}
+      <ul>
+        {% for ep in event.eventproduct_set.all %}
+          <li>{{ ep.product.name }} — Quantity: {{ ep.quantity }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% empty %}
+    <li>No events found for this date range.</li>
+  {% endfor %}
+</ul>

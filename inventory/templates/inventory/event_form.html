@@ -1,0 +1,71 @@
+<h1>Create Event</h1>
+<form method="post" id="event-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <h3>Inventory</h3>
+  {{ formset.management_form }}
+  <table id="formset-table">
+    {% for form in formset %}
+      <tr class="form-row">
+        <td>{{ form.product.label_tag }} {{ form.product }}</td>
+        <td>{{ form.quantity.label_tag }} {{ form.quantity }}</td>
+        <td><button type="button" class="remove-form">❌ Remove</button></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <button type="button" id="add-form">➕ Add another product</button>
+  <button type="submit">💾 Save</button>
+</form>
+
+<script>
+  const addFormBtn = document.getElementById('add-form');
+  const table = document.getElementById('formset-table');
+  const totalForms = document.getElementById('id_eventproduct_set-TOTAL_FORMS');
+
+  // Add event listener to remove existing rows
+  table.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('remove-form')) {
+      e.preventDefault();
+      const row = e.target.closest('.form-row');
+      row.remove();
+      updateFormIndexes();
+    }
+  });
+
+  addFormBtn.addEventListener('click', () => {
+    const currentFormCount = parseInt(totalForms.value);
+    const emptyRow = document.querySelector('.form-row').cloneNode(true);
+
+    // Update input names and ids
+    Array.from(emptyRow.querySelectorAll('input, select')).forEach(input => {
+      const name = input.name.replace(/-\d+-/, `-${currentFormCount}-`);
+      const id = input.id.replace(/-\d+-/, `-${currentFormCount}-`);
+      input.name = name;
+      input.id = id;
+      input.value = '';  // clear previous values
+    });
+
+    // Add remove button if not already there
+    if (!emptyRow.querySelector('.remove-form')) {
+      const removeCell = document.createElement('td');
+      removeCell.innerHTML = '<button type="button" class="remove-form">❌ Remove</button>';
+      emptyRow.appendChild(removeCell);
+    }
+
+    table.appendChild(emptyRow);
+    totalForms.value = currentFormCount + 1;
+  });
+
+  function updateFormIndexes() {
+    const rows = document.querySelectorAll('.form-row');
+    rows.forEach((row, index) => {
+      row.querySelectorAll('input, select').forEach(input => {
+        input.name = input.name.replace(/-\d+-/, `-${index}-`);
+        input.id = input.id.replace(/-\d+-/, `-${index}-`);
+      });
+    });
+    totalForms.value = rows.length;
+  }
+</script>
