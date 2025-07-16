@@ -9,6 +9,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['angelininventory.onrender.com']
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://angelininventory.onrender.com"
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
