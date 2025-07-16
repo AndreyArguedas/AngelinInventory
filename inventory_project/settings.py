@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-demo'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['angelininventory.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
