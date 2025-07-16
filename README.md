@@ -9,11 +9,11 @@ This is a project to handle the inventory and reservations of one of my companie
 
 • pip install django
 
+• python manage.py makemigrations
+
 • python manage.py migrate
 
 • python manage.py createsuperuser
-
-• python manage.py makemigrations inventory
 
 • rm inventory/migrations/0*.py  
 

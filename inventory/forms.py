@@ -11,7 +11,7 @@ class ProductForm(forms.ModelForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'date', 'location']
+        fields = ['name', 'date', 'location', 'cost']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
         }

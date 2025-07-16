@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-demo'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['angelininventory.onrender.com']
+ALLOWED_HOSTS = ['angelininventory.onrender.com', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
     "https://angelininventory.onrender.com"
@@ -38,7 +38,7 @@ ROOT_URLCONF = 'inventory_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'inventory/templates/inventory'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

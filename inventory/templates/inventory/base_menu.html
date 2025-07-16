@@ -1,0 +1,33 @@
+<!-- templates/base_menu.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Inventory{% endblock %}</title>
+    <style>
+        .menu-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+        .menu-link:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <a class="menu-link" href="{% url 'intro' %}">Back to Menu</a>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

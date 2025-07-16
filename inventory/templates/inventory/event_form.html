@@ -1,3 +1,6 @@
+{% extends 'base_menu.html' %}
+
+{% block content %}
 <h1>Create Event</h1>
 <form method="post" id="event-form">
   {% csrf_token %}
@@ -18,6 +21,7 @@
   <button type="button" id="add-form">➕ Add another product</button>
   <button type="submit">💾 Save</button>
 </form>
+{% endblock %}
 
 <script>
   const addFormBtn = document.getElementById('add-form');

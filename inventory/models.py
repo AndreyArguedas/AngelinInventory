@@ -21,6 +21,7 @@ class Event(models.Model):
     date = models.DateField()
     location = models.CharField(max_length=200)
     products = models.ManyToManyField('Product', through='EventProduct')
+    cost = models.PositiveIntegerField()
 
     def __str__(self):
         return f"{self.name} ({self.date})"

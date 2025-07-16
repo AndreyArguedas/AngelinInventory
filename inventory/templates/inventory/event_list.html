@@ -1,3 +1,6 @@
+{% extends 'base_menu.html' %}
+
+{% block content %}
 <h1>Eventos</h1>
 
 <a href="{% url 'event_create' %}">Crear Evento</a>
@@ -18,7 +21,7 @@
 
 <ul>
   {% for event in events %}
-    <li>{{ event.name }} - {{ event.date }} - {{ event.location }}
+    <li>{{ event.name }} - {{ event.date }} - {{ event.location }} Precio: {{ event.cost }}
       <ul>
         {% for ep in event.eventproduct_set.all %}
           <li>{{ ep.product.name }} — Quantity: {{ ep.quantity }}</li>
@@ -29,3 +32,4 @@
     <li>No events found for this date range.</li>
   {% endfor %}
 </ul>
+{% endblock %}

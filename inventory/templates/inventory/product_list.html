@@ -1,4 +1,6 @@
+{% extends 'base_menu.html' %}
 
+{% block content %}
 <h1>Product Inventory</h1>
 <a href="{% url 'product_create' %}">Add New Product</a>
 <ul>
@@ -6,3 +8,5 @@
         <li>{{ product.name }} - {{ product.quantity }} units - ${{ product.price }}</li>
     {% endfor %}
 </ul>
+
+{% endblock %}

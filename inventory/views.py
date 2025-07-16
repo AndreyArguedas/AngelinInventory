@@ -8,6 +8,9 @@ from .forms import ProductForm
 from .models import Event
 from .forms import EventForm, EventProductFormSet, EventDateFilterForm
 
+def intro_page(request):
+    return render(request, "inventory/intro.html")
+
 def product_list(request):
     products = Product.objects.all()
     return render(request, 'inventory/product_list.html', {'products': products})
